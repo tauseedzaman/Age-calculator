@@ -1,0 +1,127 @@
+<!-- 
+	Auther: Tauseed zaman
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>age calculator</title>
+</head>
+<style type="text/css">
+*{
+padding:0;
+margin:0;
+color:cyan;
+}
+body{
+background:black;
+}
+#container {
+width:100%;
+text-align:center;
+
+}
+#h2{
+width:25%;
+margin:auto;
+display:inline-block;
+color:cyan;
+text-align:center;
+}
+input{
+width:25%;
+display:inline;
+border:1px solid cyan;
+border-radius:2px;
+padding:3px;
+text-align:center;
+font-size:1rem;
+background:gray;
+}
+h1{
+color:orange;
+text-align:center;
+padding-top:15px;
+padding-bottom:15px;
+}
+button{
+background:gray;
+color:cyan;
+width:40%;
+padding:1rem;
+margin:10px auto;
+border:1px solid blue;
+border-radius:2rem;
+font-size:1rem;
+}
+#innerarea{
+background:gray;
+padding:1rem;
+border:1px solid orange;
+border-radius:1rem;
+font-size:1rem;
+}
+.val{
+float:right;
+font-size:1rem;
+color:lightgreen;
+}
+</style>
+<body>
+<h1>AGE Calculator</h1>
+<center><small style="text-align:center;color:lightgreen" >Enter your birth date and click on go button</small></center>
+<hr><br>
+<div id="container" >
+<div id="h2">Day</div id="h2">
+<div id="h2">Month</div id="h2">
+<div id="h2">Year</div id="h2">
+
+</div>
+<div id="container" >
+<input type="number" placeholder="day"  min="1" max="31" id="day"  > /
+<input type="number" placeholder="month" min="1" max="12"  id="month"  > /
+<input type="number" placeholder="year"  min="1970" id="year" >
+</div>
+<center><button onclick="run()">Go</button></center>
+<div id="t" >
+
+</div>
+<p style="text-align:center;color:orange;margin-top: auto;">Auther: tauseed zaman</p><br>
+
+ 
+
+    <script>
+function run(){
+   var x =  document.getElementById('year').value;
+    var y =  document.getElementById('month').value;
+    var z =  document.getElementById('day').value;
+	if(x == '' | y == '' | z ==''){
+		alert("Fill All Fields!");
+		return;
+	}
+	if( y > 12 | z > 31){
+		alert("Incorect Entry!");
+		return;
+	}
+ 	var my_year = Math.abs(x - new Date().getFullYear());
+ 	var my_months = (my_year*12)+y;
+ 	var my_days = (my_months*30)+z;
+ 	var my_hours = (my_days*24)+(new Date().getHours());
+ 	var my_min = (my_hours*60)+(new Date().getMinutes());
+ 	var my_sec = (my_min*60)+(new Date().getSeconds());
+ 	var data = '<p id="innerarea" >Your age in years: <span class="val">'+my_year+'</span></p><br>';
+ 	data += '<p id="innerarea" >Your age in months: <span class="val">'+my_months+'</span></p><br>';
+ 	data += '<p id="innerarea" >Your age in days : <span class="val">'+my_days+'</span></p><br>';
+ 	data += '<p id="innerarea" >Your age in hours : <span class="val">'+my_hours+'</span></p><br>';
+ 	data += '<p id="innerarea" >Your age in minutes : <span class="val">'+my_min+'</span></p><br>';
+ 	data += '<p id="innerarea" >Your age in seconds : <span class="val">'+my_sec+'</span></p><br>';
+ 	
+   document.getElementById('t').innerHTML = data;
+	setInterval(() => {
+	run();
+	}, 1000);
+}  
+</script>
+</body>
+</html>
